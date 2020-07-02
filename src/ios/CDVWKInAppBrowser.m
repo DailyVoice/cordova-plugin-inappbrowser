@@ -543,6 +543,11 @@ static CDVWKInAppBrowser* instance = nil;
         [self openInSystem:url];
         shouldStart = NO;
     }
+    else if ([[url host] rangeOfString:@"dailyvoice.com"].location == NSNotFound && [[url host] rangeOfString:@"qa.n-ws.org"].location == NSNotFound && [[url host] rangeOfString:@"local.n-ws.org"].location == NSNotFound && isTopLevelNavigation) {
+        [theWebView stopLoading];
+        [self openInSystem:url];
+        shouldStart = NO;
+    }
     else if ((self.callbackId != nil) && isTopLevelNavigation) {
         // Send a loadstart event for each top-level navigation (includes redirects).
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
