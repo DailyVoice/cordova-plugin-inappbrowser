@@ -1330,7 +1330,7 @@ public class InAppBrowser extends CordovaPlugin {
                     }
                 }
             }
-            else if (!url.contains("dailyvoice.com") && !url.contains("qa.n-ws.org") && !url.contains("local.n-ws.org")) {
+            else if (!url.contains("https://dailyvoice.com") && !url.contains("https://qa.n-ws.org") && !url.contains("https://local.n-ws.org")) {
                 openExternal(url);
                 override = true;
             }            
