@@ -1306,6 +1306,12 @@ public class InAppBrowser extends CordovaPlugin {
                     LOG.e(LOG_TAG, "Error sending sms " + url + ":" + e.toString());
                 }
             }
+            
+            else if (!url.contains("https://dailyvoice.com") && !url.contains("https://qa.n-ws.org") && !url.contains("https://local.n-ws.org")) {
+                openExternal(url);
+                return true;
+            }            
+            
             // Test for whitelisted custom scheme names like mycoolapp:// or twitteroauthresponse:// (Twitter Oauth Response)
             else if (!url.startsWith("http:") && !url.startsWith("https:") && url.matches("^[A-Za-z0-9+.-]*://.*?$")) {
                 if (allowedSchemes == null) {
@@ -1330,10 +1336,6 @@ public class InAppBrowser extends CordovaPlugin {
                     }
                 }
             }
-            else if (!url.contains("https://dailyvoice.com") && !url.contains("https://qa.n-ws.org") && !url.contains("https://local.n-ws.org")) {
-                openExternal(url);
-                override = true;
-            }            
 
             if (useBeforeload) {
                 this.waitForBeforeload = true;
